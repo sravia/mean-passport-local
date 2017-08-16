@@ -1,0 +1,92 @@
+<div class="row">
+  <div class="jumbotron">
+    <form novalidate [formGroup]="signupForm" (submit)="signup()">
+      <div
+        class="form-group"
+        [class.has-error]="!signupForm.get('username').valid
+          && signupForm.get('username').touched">
+        <label class="control-label" for="username">
+          <strong>Username *</strong>
+        </label>
+        <input
+          class="form-control" 
+          id="username"
+          name="username"
+          [formControl]="signupForm.get('username')"/>
+        <span
+          class="help-block"
+          *ngIf="signupForm.get('username').hasError('required')
+            && signupForm.get('username').touched">
+          username is required
+        </span>
+        <span
+          class="help-block"
+          *ngIf="signupForm.get('username').hasError('pattern')
+            && signupForm.get('username').touched">
+          Must be a proper username
+        </span>
+      </div>
+      <div
+        class="form-group"
+        [class.has-error]="!signupForm.get('password').valid
+          && signupForm.get('password').touched">
+        <label class="control-label" for="password">
+          <strong>Password *</strong>
+        </label>
+        <input 
+          class="form-control" 
+          id="password"
+          name="password"
+          type="password"
+          [formControl]="signupForm.get('password')"/>
+        <span
+          class="help-block"
+          *ngIf="signupForm.get('password').hasError('required')
+            && signupForm.get('password').touched">
+          Password is required
+        </span>
+        <span
+          class="help-block"
+          *ngIf="signupForm.get('password').hasError('minlength')
+            && signupForm.get('password').touched">
+          Password requires at least six characters
+        </span>
+      </div>
+      <div 
+        class="form-group"
+        [class.has-error]="!signupForm.get('confirmPassword').valid
+          && signupForm.get('confirmPassword').touched">
+        <label class="control-label" for="confirmPassword">
+          <strong>Confirm Password *</strong>
+        </label>
+        <input
+          class="form-control" 
+          id="confirmPassword"
+          name="confirmPassword"
+          type="password"
+          [formControl]="signupForm.get('confirmPassword')"/>
+        <span
+          class="help-block"
+          *ngIf="signupForm.get('confirmPassword').hasError('required')
+            && signupForm.get('confirmPassword').touched">
+          Password is required
+        </span>
+        <span
+          class="help-block"
+          *ngIf="signupForm.get('confirmPassword').hasError('minlength')
+            && signupForm.get('confirmPassword').touched">
+          Password requires at least six characters
+        </span>
+      </div>
+      <div *ngIf="authService.error" class="alert alert-danger">
+        {{authService.error}}
+      </div>
+      <button
+        class="btn btn-primary"
+        type="submit"
+        [disabled]="signupForm.invalid">
+        Sign Up!
+      </button>
+    </form>
+  </div>
+</div>

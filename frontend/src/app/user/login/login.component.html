@@ -1,0 +1,20 @@
+<div class="row">
+	<div class="jumbotron">
+		<form (ngSubmit)="login()">
+			<div class="form-group">
+				<label for="username">Username</label>
+				<input type="username" [(ngModel)]="username" id="username" name="username" class="form-control">
+			</div>
+			<div class="form-group">
+				<label for="password">Password</label>
+				<input type="password" [(ngModel)]="password" id="password"
+					name="password" class="form-control">
+			</div>
+			<br />
+			<div *ngIf="authService.error" class="alert alert-danger">
+				{{authService.error}}
+			</div>
+			<button type="submit" class="btn btn-primary">Log In</button>
+		</form>
+</div>
+</div>

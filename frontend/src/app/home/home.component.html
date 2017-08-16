@@ -1,0 +1,51 @@
+<nav class="navbar navbar-default">
+	<div class="container">
+		<div class="navbar-header">
+			<a class="navbar-brand" routerLink="/">Home</a>
+		</div>
+		<ul class="nav navbar-nav pull-right">
+			<li *ngIf="!auth.loggedIn">
+        <a routerLink="/login" routerLinkActive="active">
+          Log In
+        </a>
+      </li>
+			<li *ngIf="!auth.loggedIn">
+        <a routerLink="/signup" routerLinkActive="active">
+          Sign Up
+        </a>
+      </li>
+			<li dropdown *ngIf="auth.loggedIn && auth.isAdmin">
+        <a class="pointer" dropdownToggle>
+          Admin
+          <i class="fa fa-angle-down"></i>
+        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <a
+              class="dropdown-item"
+              routerLink="/admin/blog/list"
+              routerLinkActive="active">
+              Blog
+            </a>
+            <a
+              class="dropdown-item"
+              routerLink="/admin/user/list"
+              routerLinkActive="active">
+              Users
+            </a>
+          </li>
+        </ul>
+      </li>
+			<li *ngIf="auth.loggedIn">
+        <a routerLink="/profile" routerLinkActive="active">
+          Profile
+        </a>
+      </li>
+			<li *ngIf="auth.loggedIn">
+        <a class="pointer" (click)="logout()">
+          Logout
+        </a>
+      </li>
+		</ul>
+	</div>
+</nav>
